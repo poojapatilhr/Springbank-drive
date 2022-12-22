@@ -1,0 +1,138 @@
+---
+title: "Assignment 6"
+author: "Team 7"
+date: "2022-11-20"
+output: pdf_document
+---
+
+```{r}
+# Clear Memory
+rm(list=ls(all=TRUE)) # Import Data
+dat <- read.csv("Springbank Drive Revised.csv", header=TRUE)
+# Print column names on the screen
+colnames(dat)
+```
+
+```{r}
+# Extract variables to be used in the analyses
+One.and.a.Half.Storey <- dat[,"One.and.a.Half.Storey"]
+Two.Storey <- dat[,"Two.Storey"]
+Minor.Exterior.Amenities <- dat[,"Minor.Exterior.Amenities"]
+Two.or.Three.Extra.Amenities <- dat[,"Two.or.Three.Extra.Amenities"]
+More.than.Three.Exterior.Amenities <- dat[,"More.than.Three.Exterior.Amenities"]
+Only.Brick <- dat[,"Only.Brick"]
+Carport <- dat[,"Carport"]
+One.Car.Garage <- dat[,"One.Car.Garage"]
+Two.Car.Garage <- dat[,"Two.Car.Garage"]
+Average.View <- dat[,"Average.View"]
+Good.View <- dat[,"Good.View"]
+Average.Interior.Condition <- dat[,"Average.Interior.Condition"]
+Good.Interior.Condition <- dat[,"Good.Interior.Condition"]
+Excellent.Interior.Condition <- dat[,"Excellent.Interior.Condition"]
+LANESRD <- dat[,"LANESRD"]
+AGEYR <- dat[,"AGEYR"]
+LFA <- dat[,"LFA"]
+BSMTFINAREA <- dat[,"BSMTFINAREA"]
+TRAFCOUNT <- dat[,"TRAFCOUNT"]
+PRICE <- dat[,"PRICE"]
+CENAIR <- dat[,"CENAIR"]
+POOL <- dat[,"POOL"]
+BI.AMEN.APPL <- dat[,"BI.AMEN.APPL"]
+
+```
+
+
+```{r}
+# Generate correlation matrix # cbind creates a matrix 
+cor(cbind(PRICE,
+          #One.and.a.Half.Storey,
+          #Two.Storey,
+          #Minor.Exterior.Amenities,
+          #Two.or.Three.Extra.Amenities,
+          #More.than.Three.Exterior.Amenities,
+          #Only.Brick,
+          #Carport,
+          #One.Car.Garage,
+          #Two.Car.Garage,
+          Average.View,
+          Good.View,
+          Average.Interior.Condition,
+          Good.Interior.Condition,
+          Excellent.Interior.Condition,
+          LANESRD,
+          #AGEYR,
+          LFA,
+          BSMTFINAREA,
+          TRAFCOUNT
+          #CENAIR,
+          #POOL,
+          #BI.AMEN.APPL
+          ))
+
+```
+
+
+```{r}
+# MR Model 1
+mod.1 <- lm(PRICE ~
+# One.and.a.Half.Storey +
+# Two.Storey +
+# Minor.Exterior.Amenities +
+#Two.or.Three.Extra.Amenities +
+# More.than.Three.Exterior.Amenities + # Carport +
+#One.Car.Garage +
+# Two.Car.Garage +
+Average.View +
+Good.View +
+Average.Interior.Condition + Good.Interior.Condition + Excellent.Interior.Condition +
+LANESRD +
+# TRAFCOUNT +
+# AGEYR +
+LFA +
+BSMTFINAREA)
+#BI.AMEN.APPL
+# POOL
+# CENAIR
+# Summary
+summary(mod.1)
+
+```
+```{r}
+# Extract standardized residuals and predicted values
+standardized.residual = rstandard(mod.1)
+predicted.saleprice <- predict(mod.1)
+plot(predicted.saleprice,standardized.residual)
+```
+
+
+```{r}
+# MR Model 2
+mod.2 <- lm(PRICE ~
+# One.and.a.Half.Storey +
+#Two.Storey +
+# Minor.Exterior.Amenities +
+# Two.or.Three.Extra.Amenities +
+# More.than.Three.Exterior.Amenities + # Carport +
+# One.Car.Garage +
+# Two.Car.Garage +
+Average.View +
+Good.View +
+Average.Interior.Condition + Good.Interior.Condition + Excellent.Interior.Condition +
+#LANESRD +
+TRAFCOUNT +
+# AGEYR +
+LFA +
+BSMTFINAREA)
+# BI.AMEN.APPL
+# POOL
+# CENAIR
+# Summary
+summary(mod.2)
+```
+```{r}
+# Extract standardized residuals and predicted values
+standardized.residual = rstandard(mod.2)
+predicted.saleprice <- predict(mod.2)
+plot(predicted.saleprice,standardized.residual)
+```
+
