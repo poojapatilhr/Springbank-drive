@@ -1,2 +1,2 @@
 # Springbank-drive
-Springbank Drive Final Case Analysis
+The Canada-Ontario Infrastructure Program planned to widen 2.55 kilometers of Springbank Drive from two lanes to four between Horton Street and Wonderland Road and to construct turning lanes at critical intersections. The construction is expected to be completed by 2004. With the help of past property sales data we have to analyse what is the appropriate compensation amount for the home owners. Also create the mathematical formula which can be used by governemnt officials to find the correct compensation amount. 
